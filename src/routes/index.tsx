@@ -4,6 +4,7 @@ import { ArrowUpRight, AlertTriangle, TrendingUp, Sofa, Package, LineChart } fro
 import { Header } from "@/components/dashboard/Header";
 import { MetricCard } from "@/components/dashboard/MetricCard";
 import { PredictorChart } from "@/components/dashboard/PredictorChart";
+import { LiveDataPanel } from "@/components/dashboard/LiveDataPanel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
