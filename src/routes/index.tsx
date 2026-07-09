@@ -4,6 +4,7 @@ import { ArrowUpRight, AlertTriangle, TrendingUp, Sofa, Package, LineChart } fro
 import { Header } from "@/components/dashboard/Header";
 import { MetricCard } from "@/components/dashboard/MetricCard";
 import { PredictorChart } from "@/components/dashboard/PredictorChart";
+import { LiveDataPanel } from "@/components/dashboard/LiveDataPanel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -81,6 +82,11 @@ function Dashboard() {
         <section className="mt-6">
           <PredictorChart />
         </section>
+
+        <section className="mt-10">
+          <LiveDataPanel />
+        </section>
+
 
         <footer className="mt-10 flex items-center justify-between border-t border-border/60 pt-6 text-xs text-muted-foreground">
           <span>RetailRadar · Predictive intelligence for Gold Coast furniture retail</span>
