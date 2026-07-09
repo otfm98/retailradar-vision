@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Dashboard() {
-  const [sector, setSector] = useState("Apparel");
+  const [sector, setSector] = useState("All Furniture");
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -38,31 +38,31 @@ function Dashboard() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <div className="text-xs font-medium uppercase tracking-[0.18em] text-primary">
-              {sector} · Q4 Outlook
+              {sector} · Gold Coast · Summer Outlook
             </div>
             <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-              Good morning. Here's what's <span className="text-gradient">coming next.</span>
+              G'day. Here's what's <span className="text-gradient">selling next.</span>
             </h1>
             <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-              Live predictive signals across foot traffic, inventory demand, and consumer sentiment
-              — refreshed 2 minutes ago.
+              Live predictive signals for Gold Coast furniture retailers — couches, dining
+              settings, outdoor lounges & more. Refreshed 2 minutes ago.
             </p>
           </div>
         </div>
 
         <section className="mt-8 grid gap-4 md:grid-cols-3">
           <MetricCard
-            label="Expected Foot Traffic"
+            label="Expected Showroom Traffic"
             value="+12%"
-            hint="vs. prior 30 days · 1.42M projected visits"
-            icon={Users}
+            hint="vs. prior 30 days · Pacific Fair & Robina catchments trending up"
+            icon={Sofa}
             accent="success"
             trailingIcon={ArrowUpRight}
           />
           <MetricCard
             label="Inventory Demand"
             value="High"
-            hint="Restock apparel & seasonal SKUs within 7 days"
+            hint="Restock outdoor lounges & 6-seat dining settings within 10 days"
             icon={Package}
             accent="warning"
             trailingIcon={AlertTriangle}
@@ -70,12 +70,13 @@ function Dashboard() {
           <MetricCard
             label="Consumer Spending Index"
             value="Rising"
-            hint="Sentiment up 8.4 pts week-over-week"
+            hint="Homeowner sentiment up 8.4 pts · pre-summer renovation cycle"
             icon={LineChart}
             accent="primary"
             trailingIcon={TrendingUp}
           />
         </section>
+
 
         <section className="mt-6">
           <PredictorChart />
