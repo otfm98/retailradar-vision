@@ -35,8 +35,9 @@ export function Header({ sector, onSectorChange }: HeaderProps) {
             </div>
             <div className="leading-tight">
               <div className="text-sm font-semibold tracking-tight">RetailRadar</div>
-              <div className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
-                Predictive Intelligence
+              <div className="flex items-center gap-1 text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                <MapPin className="h-2.5 w-2.5" />
+                Gold Coast · Furniture
               </div>
             </div>
           </div>
