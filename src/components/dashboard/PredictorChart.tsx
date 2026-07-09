@@ -13,13 +13,16 @@ import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Sparkles } from "lucide-react";
 
+// Next 6 months of forecast furniture sales revenue (AUD, thousands).
+// Gold Coast seasonality: pre-summer outdoor + Christmas dining surge Nov-Dec,
+// Boxing Day / January sales carry-over, then a March cool-down.
 const BASE = [
-  { month: "Jul", value: 42 },
-  { month: "Aug", value: 48 },
-  { month: "Sep", value: 55 },
-  { month: "Oct", value: 72 },
-  { month: "Nov", value: 128 },
-  { month: "Dec", value: 156 },
+  { month: "Aug", value: 380 },
+  { month: "Sep", value: 445 },
+  { month: "Oct", value: 610 },
+  { month: "Nov", value: 1180 },
+  { month: "Dec", value: 1520 },
+  { month: "Jan", value: 1340 },
 ];
 
 export function PredictorChart() {
