@@ -50,16 +50,16 @@ export function PredictorChart() {
             Predictor Engine
           </div>
           <h2 className="mt-1 text-2xl font-semibold tracking-tight">
-            Predicted Shopper Volume
+            Predicted Furniture Sales · Gold Coast
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Forecast horizon: next 6 months · Confidence 94%
+            Forecast horizon: next 6 months · Revenue in AUD · Confidence 94%
           </p>
         </div>
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="border-success/40 bg-success/10 text-success">
             <TrendingUp className="mr-1 h-3 w-3" />
-            Peak {peak.toLocaleString()}K in Dec
+            Peak ${peak.toLocaleString()}K in Dec
           </Badge>
         </div>
       </div>
