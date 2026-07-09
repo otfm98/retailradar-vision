@@ -53,8 +53,8 @@ export function Header({ sector, onSectorChange }: HeaderProps) {
                 <ChevronDown className="h-3.5 w-3.5 opacity-60" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-52">
-              <DropdownMenuLabel>Retail Sectors</DropdownMenuLabel>
+            <DropdownMenuContent align="start" className="w-56">
+              <DropdownMenuLabel>Furniture Categories</DropdownMenuLabel>
               <DropdownMenuSeparator />
               {SECTORS.map((s) => (
                 <DropdownMenuItem
