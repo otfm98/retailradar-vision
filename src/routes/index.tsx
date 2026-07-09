@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowUpRight, AlertTriangle, TrendingUp, Users, Package, LineChart } from "lucide-react";
+import { ArrowUpRight, AlertTriangle, TrendingUp, Sofa, Package, LineChart } from "lucide-react";
 import { Header } from "@/components/dashboard/Header";
 import { MetricCard } from "@/components/dashboard/MetricCard";
 import { PredictorChart } from "@/components/dashboard/PredictorChart";
@@ -8,17 +8,17 @@ import { PredictorChart } from "@/components/dashboard/PredictorChart";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "RetailRadar — Predictive Retail Analytics" },
+      { title: "RetailRadar — Gold Coast Furniture Sales Forecasting" },
       {
         name: "description",
         content:
-          "Executive dashboard for predictive retail analytics. Forecast shopper volume, inventory demand, and consumer spending across sectors.",
+          "Predictive analytics for Gold Coast furniture retailers. Forecast sales of couches, dining settings, outdoor furniture and more across the coming season.",
       },
-      { property: "og:title", content: "RetailRadar — Predictive Retail Analytics" },
+      { property: "og:title", content: "RetailRadar — Gold Coast Furniture Sales Forecasting" },
       {
         property: "og:description",
         content:
-          "Executive dashboard for predictive retail analytics. Forecast shopper volume, inventory demand, and consumer spending across sectors.",
+          "Predictive analytics for Gold Coast furniture retailers. Forecast sales of couches, dining settings, outdoor furniture and more across the coming season.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
