@@ -90,7 +90,7 @@ export function PredictorChart() {
               tickLine={false}
               axisLine={false}
               fontSize={12}
-              tickFormatter={(v) => `${v}K`}
+              tickFormatter={(v) => `$${v}K`}
             />
             <Tooltip
               cursor={{ stroke: "var(--color-primary)", strokeWidth: 1, strokeDasharray: "3 3" }}
@@ -101,7 +101,7 @@ export function PredictorChart() {
                 fontSize: "12px",
               }}
               labelStyle={{ color: "var(--color-muted-foreground)" }}
-              formatter={(v: number, name) => [`${v.toLocaleString()}K shoppers`, name === "predicted" ? "Predicted" : "Baseline"]}
+              formatter={(v: number, name) => [`$${v.toLocaleString()}K AUD`, name === "predicted" ? "Predicted" : "Baseline"]}
             />
             <Area
               type="monotone"
