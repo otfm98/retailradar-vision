@@ -1,4 +1,4 @@
-import { Radar, ChevronDown, Bell, Search } from "lucide-react";
+import { Radar, ChevronDown, Bell, Search, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,7 +14,15 @@ interface HeaderProps {
   onSectorChange: (s: string) => void;
 }
 
-const SECTORS = ["Apparel", "Electronics", "Grocery", "Home & Garden", "Beauty"];
+const SECTORS = [
+  "All Furniture",
+  "Couches & Sofas",
+  "Dining Settings",
+  "Outdoor Furniture",
+  "Coffee Tables",
+  "Bedroom",
+  "Office & Study",
+];
 
 export function Header({ sector, onSectorChange }: HeaderProps) {
   return (
