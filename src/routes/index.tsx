@@ -83,6 +83,11 @@ function Dashboard() {
           <PredictorChart />
         </section>
 
+        <section className="mt-10">
+          <LiveDataPanel />
+        </section>
+
+
         <footer className="mt-10 flex items-center justify-between border-t border-border/60 pt-6 text-xs text-muted-foreground">
           <span>RetailRadar · Predictive intelligence for Gold Coast furniture retail</span>
           <span>Model v4.2 · Updated 2 min ago</span>
