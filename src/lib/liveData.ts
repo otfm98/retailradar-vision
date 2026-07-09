@@ -81,21 +81,25 @@ export interface GoldCoastDatasetResult {
 }
 
 /**
- * City of Gold Coast Open Data — ArcGIS Hub v3 search. Filters datasets
- * published by the City of Gold Coast organisation.
+ * City of Gold Coast Open Data — the city publishes through ArcGIS Hub.
+ * We hit the ArcGIS Open Data v3 API and search by title for datasets
+ * published by City of Gold Coast staff.
  */
 export async function fetchGoldCoastDatasets(): Promise<GoldCoastDatasetResult> {
   const url =
-    "https://hub.arcgis.com/api/search/v1/collections/dataset/items?filter=source:%22City%20of%20Gold%20Coast%22&limit=5";
+    'https://opendata.arcgis.com/api/v3/datasets?q=%22City+of+Gold+Coast%22&page%5Bsize%5D=5';
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Gold Coast Open Data responded ${res.status}`);
   const json = await res.json();
-  const features = json?.features ?? [];
-  const total = json?.meta?.stats?.totalCount ?? features.length;
+  const data = json?.data ?? [];
+  const total = json?.meta?.stats?.totalCount ?? data.length;
   return {
     count: total,
-    sampleTitles: features
+    sampleTitles: data
       .slice(0, 3)
-      .map((f: { properties?: { title?: string } }) => f?.properties?.title ?? "Untitled"),
+      .map(
+        (d: { attributes?: { name?: string } }) => d?.attributes?.name ?? "Untitled",
+      ),
   };
 }
+
