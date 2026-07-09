@@ -1,4 +1,4 @@
-import { Radar, ChevronDown, Bell, Search } from "lucide-react";
+import { Radar, ChevronDown, Bell, Search, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,7 +14,15 @@ interface HeaderProps {
   onSectorChange: (s: string) => void;
 }
 
-const SECTORS = ["Apparel", "Electronics", "Grocery", "Home & Garden", "Beauty"];
+const SECTORS = [
+  "All Furniture",
+  "Couches & Sofas",
+  "Dining Settings",
+  "Outdoor Furniture",
+  "Coffee Tables",
+  "Bedroom",
+  "Office & Study",
+];
 
 export function Header({ sector, onSectorChange }: HeaderProps) {
   return (
@@ -27,8 +35,9 @@ export function Header({ sector, onSectorChange }: HeaderProps) {
             </div>
             <div className="leading-tight">
               <div className="text-sm font-semibold tracking-tight">RetailRadar</div>
-              <div className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
-                Predictive Intelligence
+              <div className="flex items-center gap-1 text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                <MapPin className="h-2.5 w-2.5" />
+                Gold Coast · Furniture
               </div>
             </div>
           </div>
@@ -44,8 +53,8 @@ export function Header({ sector, onSectorChange }: HeaderProps) {
                 <ChevronDown className="h-3.5 w-3.5 opacity-60" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-52">
-              <DropdownMenuLabel>Retail Sectors</DropdownMenuLabel>
+            <DropdownMenuContent align="start" className="w-56">
+              <DropdownMenuLabel>Furniture Categories</DropdownMenuLabel>
               <DropdownMenuSeparator />
               {SECTORS.map((s) => (
                 <DropdownMenuItem

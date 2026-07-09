@@ -13,13 +13,16 @@ import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, Sparkles } from "lucide-react";
 
+// Next 6 months of forecast furniture sales revenue (AUD, thousands).
+// Gold Coast seasonality: pre-summer outdoor + Christmas dining surge Nov-Dec,
+// Boxing Day / January sales carry-over, then a March cool-down.
 const BASE = [
-  { month: "Jul", value: 42 },
-  { month: "Aug", value: 48 },
-  { month: "Sep", value: 55 },
-  { month: "Oct", value: 72 },
-  { month: "Nov", value: 128 },
-  { month: "Dec", value: 156 },
+  { month: "Aug", value: 380 },
+  { month: "Sep", value: 445 },
+  { month: "Oct", value: 610 },
+  { month: "Nov", value: 1180 },
+  { month: "Dec", value: 1520 },
+  { month: "Jan", value: 1340 },
 ];
 
 export function PredictorChart() {
@@ -47,16 +50,16 @@ export function PredictorChart() {
             Predictor Engine
           </div>
           <h2 className="mt-1 text-2xl font-semibold tracking-tight">
-            Predicted Shopper Volume
+            Predicted Furniture Sales · Gold Coast
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Forecast horizon: next 6 months · Confidence 94%
+            Forecast horizon: next 6 months · Revenue in AUD · Confidence 94%
           </p>
         </div>
         <div className="flex items-center gap-2">
           <Badge variant="outline" className="border-success/40 bg-success/10 text-success">
             <TrendingUp className="mr-1 h-3 w-3" />
-            Peak {peak.toLocaleString()}K in Dec
+            Peak ${peak.toLocaleString()}K in Dec
           </Badge>
         </div>
       </div>
@@ -87,7 +90,7 @@ export function PredictorChart() {
               tickLine={false}
               axisLine={false}
               fontSize={12}
-              tickFormatter={(v) => `${v}K`}
+              tickFormatter={(v) => `$${v}K`}
             />
             <Tooltip
               cursor={{ stroke: "var(--color-primary)", strokeWidth: 1, strokeDasharray: "3 3" }}
@@ -98,7 +101,7 @@ export function PredictorChart() {
                 fontSize: "12px",
               }}
               labelStyle={{ color: "var(--color-muted-foreground)" }}
-              formatter={(v: number, name) => [`${v.toLocaleString()}K shoppers`, name === "predicted" ? "Predicted" : "Baseline"]}
+              formatter={(v: number, name) => [`$${v.toLocaleString()}K AUD`, name === "predicted" ? "Predicted" : "Baseline"]}
             />
             <Area
               type="monotone"
