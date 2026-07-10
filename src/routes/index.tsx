@@ -42,7 +42,7 @@ function Dashboard() {
               {sector} · Gold Coast · Summer Outlook
             </div>
             <h1 className="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
-              G'day. Here's what's <span className="text-gradient">selling next.</span>
+              Here are your potential sales for the future
             </h1>
             <p className="mt-2 max-w-xl text-sm text-muted-foreground">
               Live predictive signals for Gold Coast furniture retailers — couches, dining
