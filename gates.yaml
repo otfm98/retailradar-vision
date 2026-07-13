@@ -1,0 +1,69 @@
+# RetailRadar gate registry (Phase 12)
+# GATE-A: quality checks — mechanically enforced, no judgment calls
+# GATE-B: policy checks — mechanically enforced where possible
+# JUDGMENT rules in CONTEXT/RULES.md stay prose-only and are not listed here.
+
+version: 1
+
+seams:
+  source: CONTEXT/STABLE_SEAMS.md
+  marker_start: "<!-- SEAMS:START -->"
+  marker_end: "<!-- SEAMS:END -->"
+
+gates:
+  # --- GATE-A (pre-commit) ---
+  - id: eslint
+    tier: GATE-A
+    rule: RULES.md#6
+    stage: pre-commit
+    command: npm run lint
+
+  - id: prettier-check
+    tier: GATE-A
+    rule: RULES.md#7
+    stage: pre-commit
+    command: npx prettier --check .
+
+  - id: typescript
+    tier: GATE-A
+    rule: RULES.md#5
+    stage: pre-commit
+    command: npx tsc --noEmit
+
+  # --- GATE-B (pre-commit) ---
+  - id: secret-scan
+    tier: GATE-B
+    rule: RULES.md#1
+    stage: pre-commit
+    type: script
+    script: .githooks/lib/secret-scan.sh
+
+  - id: seam-guard
+    tier: GATE-B
+    rule: RULES.md#50
+    stage: pre-commit
+    type: script
+    script: .githooks/lib/seam-guard.sh
+
+  # --- GATE-B (future / not wired in lighter scope) ---
+  - id: route-tree-regen
+    tier: GATE-B
+    rule: RULES.md#21
+    stage: pre-commit
+    status: deferred
+    note: Requires TanStack router regeneration check; not wired until dev server CLI is scripted.
+
+  - id: test-floor
+    tier: GATE-B
+    rule: RULES.md#14
+    stage: ci
+    status: deferred
+    note: No test runner configured yet (see TECH_DEBT.md INFRA-01).
+
+  # --- GATE-A (CI — deferred until INFRA-02) ---
+  - id: build
+    tier: GATE-A
+    rule: RULES.md#6
+    stage: ci
+    status: deferred
+    command: npm run build

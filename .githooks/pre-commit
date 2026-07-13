@@ -1,0 +1,47 @@
+#!/bin/sh
+# RetailRadar pre-commit — runs GATE-A and GATE-B gates from gates.yaml (pre-commit stage).
+# A failing gate is authoritative (RULES.md#3).
+
+set -e
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+run_command_gate() {
+  id="$1"
+  cmd="$2"
+  echo "▶ gate [$id]: $cmd"
+  sh -c "$cmd"
+}
+
+run_script_gate() {
+  id="$1"
+  script="$2"
+  echo "▶ gate [$id]: $script"
+  sh "$script"
+}
+
+STAGED=$(git diff --cached --name-only --diff-filter=ACM)
+if [ -n "$STAGED" ]; then
+  TS_FILES=""
+  PRETTIER_FILES=""
+  for f in $STAGED; do
+    case "$f" in
+      *.ts|*.tsx) TS_FILES="$TS_FILES $f" ;;
+      *.yaml|*.yml|*.json|*.css|*.md) PRETTIER_FILES="$PRETTIER_FILES $f" ;;
+    esac
+  done
+  if [ -n "$TS_FILES" ]; then
+    run_command_gate "eslint" "npx eslint $TS_FILES"
+  fi
+  if [ -n "$PRETTIER_FILES" ]; then
+    run_command_gate "prettier-check" "npx prettier --check $PRETTIER_FILES"
+  fi
+fi
+run_command_gate "typescript" "npx tsc --noEmit"
+
+# GATE-B
+run_script_gate "secret-scan" ".githooks/lib/secret-scan.sh"
+run_script_gate "seam-guard" ".githooks/lib/seam-guard.sh"
+
+echo "✓ pre-commit gates passed"
