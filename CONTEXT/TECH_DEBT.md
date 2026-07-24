@@ -6,7 +6,7 @@ _Real problems knowingly deferred, not aspirational improvements. Each item is s
 
 | ID          | Severity | Area     | Status  | Description                                                                      |
 | ----------- | -------- | -------- | ------- | -------------------------------------------------------------------------------- |
-| BACKEND-01  | HIGH     | Backend  | PARTIAL | ABS CPI proxied via `/api/abs/cpi`; QLD/GC still client-side                     |
+| BACKEND-01  | HIGH     | Backend  | PARTIAL | ABS CPI + QLD Open Data proxied; Gold Coast still client-side                    |
 | BACKEND-02  | HIGH     | Backend  | PARTIAL | `.env.example` + `.gitignore` conventions established; `ABS_API_KEY` server-only |
 | DATA-01     | HIGH     | Data     | OPEN    | Forecast and KPI data is hardcoded/mock, not visibly labeled as such             |
 | DATA-02     | MEDIUM   | Data     | OPEN    | ABS API key handling unconfirmed                                                 |
@@ -24,7 +24,7 @@ _Real problems knowingly deferred, not aspirational improvements. Each item is s
 
 **Severity:** HIGH · **Owner:** unassigned · **Status:** PARTIAL
 
-ABS CPI is now proxied server-side (`GET /api/abs/cpi` → `src/lib/absCpi.server.ts`). QLD Open Data and Gold Coast ArcGIS remain direct browser-side fetch in `liveData.ts`. A forecasting model endpoint and credentialed sources (TRA, POS) still need a fuller backend.
+ABS CPI and QLD Open Data are now proxied server-side (`GET /api/abs/cpi` → `src/lib/absCpi.server.ts`; `GET /api/qld/retail` → `src/lib/qldOpenData.server.ts`). Gold Coast ArcGIS remains a direct browser-side fetch in `liveData.ts`. A forecasting model endpoint and credentialed sources (TRA, POS) still need a fuller backend.
 
 **Why it matters:** Blocks nearly every item on the strategic roadmap in `PROJECT_CONTEXT.md`. This is the prerequisite, not a parallel task.
 

@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiQldRetailRouteImport } from './routes/api/qld/retail'
 import { Route as ApiAbsCpiRouteImport } from './routes/api/abs/cpi'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiQldRetailRoute = ApiQldRetailRouteImport.update({
+  id: '/api/qld/retail',
+  path: '/api/qld/retail',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAbsCpiRoute = ApiAbsCpiRouteImport.update({
@@ -26,27 +32,31 @@ const ApiAbsCpiRoute = ApiAbsCpiRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/abs/cpi': typeof ApiAbsCpiRoute
+  '/api/qld/retail': typeof ApiQldRetailRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/abs/cpi': typeof ApiAbsCpiRoute
+  '/api/qld/retail': typeof ApiQldRetailRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api/abs/cpi': typeof ApiAbsCpiRoute
+  '/api/qld/retail': typeof ApiQldRetailRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/abs/cpi'
+  fullPaths: '/' | '/api/abs/cpi' | '/api/qld/retail'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/abs/cpi'
-  id: '__root__' | '/' | '/api/abs/cpi'
+  to: '/' | '/api/abs/cpi' | '/api/qld/retail'
+  id: '__root__' | '/' | '/api/abs/cpi' | '/api/qld/retail'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiAbsCpiRoute: typeof ApiAbsCpiRoute
+  ApiQldRetailRoute: typeof ApiQldRetailRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/qld/retail': {
+      id: '/api/qld/retail'
+      path: '/api/qld/retail'
+      fullPath: '/api/qld/retail'
+      preLoaderRoute: typeof ApiQldRetailRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/abs/cpi': {
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiAbsCpiRoute: ApiAbsCpiRoute,
+  ApiQldRetailRoute: ApiQldRetailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

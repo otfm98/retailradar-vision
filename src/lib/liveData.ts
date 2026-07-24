@@ -1,7 +1,8 @@
 // Live data sources for the Gold Coast furniture dashboard.
-// ABS CPI is proxied server-side via /api/abs/cpi. QLD and Gold Coast calls
-// still run browser-side. If a source is unreachable (CORS, downtime,
-// schema change) the caller shows an error state — no silent fallback data.
+// ABS CPI and QLD Open Data are proxied server-side via /api/abs/cpi and
+// /api/qld/retail. Gold Coast calls still run browser-side. If a source is
+// unreachable (CORS, downtime, schema change) the caller shows an error state
+// — no silent fallback data.
 
 export interface AbsCpiResult {
   latestPeriod: string;
@@ -32,19 +33,15 @@ export interface QldDatasetResult {
 
 /**
  * Queensland Government Open Data — CKAN search for Gold Coast retail /
- * furniture / consumer datasets. Supports CORS.
+ * furniture / consumer datasets. Proxied through GET /api/qld/retail.
  */
 export async function fetchQldRetailDatasets(): Promise<QldDatasetResult> {
-  const url = "https://www.data.qld.gov.au/api/3/action/package_search?q=gold+coast+retail&rows=5";
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`QLD Open Data responded ${res.status}`);
-  const json = await res.json();
-  if (!json?.success) throw new Error("QLD Open Data returned unsuccessful response");
-  const results = json.result?.results ?? [];
-  return {
-    count: json.result?.count ?? results.length,
-    topTitles: results.slice(0, 3).map((r: { title: string }) => r.title),
-  };
+  const res = await fetch("/api/qld/retail");
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body?.error ?? `QLD proxy responded ${res.status}`);
+  }
+  return res.json();
 }
 
 export interface GoldCoastDatasetResult {

@@ -11,6 +11,10 @@ _Active work registry. One entry per active branch. Update at phase boundaries (
 
 ## Active work
 
+**Branch:** `feat/qld-open-data-backend-proxy`
+**Seams touched:** `src/lib/liveData.ts` (QLD fetcher only — client now calls proxy; parsing moves server-side)
+**Why:** Extend BACKEND-01 proxy pattern to QLD Open Data CKAN API; Gold Coast ArcGIS stays client-side
+
 **Phase 13 — Claude project setup (manual, claude.ai)**
 **Status:** In progress — repo side complete; Claude.ai UI steps remain
 **What:** Create a Claude Project for RetailRadar, paste the instruction prompt (see below), upload the core four docs, wait for sync.
