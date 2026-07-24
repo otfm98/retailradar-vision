@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiAbsCpiRouteImport } from './routes/api/abs/cpi'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAbsCpiRoute = ApiAbsCpiRouteImport.update({
+  id: '/api/abs/cpi',
+  path: '/api/abs/cpi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/abs/cpi': typeof ApiAbsCpiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/abs/cpi': typeof ApiAbsCpiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/abs/cpi': typeof ApiAbsCpiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/abs/cpi'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/abs/cpi'
+  id: '__root__' | '/' | '/api/abs/cpi'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiAbsCpiRoute: typeof ApiAbsCpiRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/abs/cpi': {
+      id: '/api/abs/cpi'
+      path: '/api/abs/cpi'
+      fullPath: '/api/abs/cpi'
+      preLoaderRoute: typeof ApiAbsCpiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiAbsCpiRoute: ApiAbsCpiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
